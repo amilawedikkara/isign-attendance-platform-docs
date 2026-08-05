@@ -130,7 +130,7 @@ When GitHub Pages is enabled for the repository, the interactive documentation i
 https://amilawedikkara.github.io/isign-attendance-platform-docs/
 ```
 
-The page loads the OpenAPI source directly from the repository's GitHub Pages URL.
+The page loads the OpenAPI source through the relative path `./isign-i3cubes-api.yaml`, so the same page works through GitHub Pages and a local static server.
 
 ## My contribution
 
@@ -230,7 +230,7 @@ Then open:
 http://localhost:8000/
 ```
 
-The current `index.html` references the GitHub Pages copy of the specification rather than a local relative file. Local interactive viewing therefore requires internet access unless that reference is changed temporarily.
+The OpenAPI specification is loaded through a local relative path. Internet access is still required because `index.html` loads the ReDoc JavaScript bundle from the ReDoc CDN.
 
 ## Deployment
 
@@ -252,7 +252,6 @@ The production server entry in the OpenAPI document is a contract reference. Thi
 * There is no automated OpenAPI linting or validation workflow.
 * There is no CI workflow checking broken references or invalid schema changes.
 * The ReDoc page depends on a remotely hosted JavaScript bundle.
-* The ReDoc page loads the specification from GitHub Pages instead of a relative local path.
 * No generated SDK or API client is maintained in this repository.
 * No automated contract tests compare the specification with backend responses.
 * No versioned release process is documented.
@@ -267,10 +266,9 @@ The production server entry in the OpenAPI document is a contract reference. Thi
 4. Move reusable request and response structures into more shared component schemas.
 5. Add architecture decision records for major integration choices.
 6. Add sequence diagrams for registration, activation, Duty In, Duty Out, and biometric enrollment.
-7. Make the ReDoc page use a relative specification path for local and hosted viewing.
-8. Establish semantic versioning and tagged documentation releases.
-9. Add changelog automation for contract changes.
-10. Add a license only after confirming ownership and permission with the i3Cubes project stakeholders.
+7. Establish semantic versioning and tagged documentation releases.
+8. Add changelog automation for contract changes.
+9. Add a license only after confirming ownership and permission with the i3Cubes project stakeholders.
 
 ## Related repositories
 
