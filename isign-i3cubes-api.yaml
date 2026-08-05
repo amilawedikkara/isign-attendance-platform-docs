@@ -16,8 +16,6 @@ info:
 servers:
 - url: https://api.isign.i3cubes.com
   description: Production Server
-- url: http://124.43.201.83:9091
-  description: Development Server - tested device registration APIs
 tags:
 - name: Authentication
   description: User authentication APIs
@@ -85,11 +83,11 @@ paths:
               properties:
                 username:
                   type: string
-                  example: admin@isign.lk
+                  example: admin@example.com
                 password:
                   type: string
                   format: password
-                  example: P@ssw0rd123
+                  example: ExamplePassword123!
       responses:
         '200':
           description: Login successful
@@ -106,7 +104,7 @@ paths:
                     example: Login successful
                   token:
                     type: string
-                    example: eyJhbGciOiJIUzI1NiIsInR5cCI...
+                    example: example.jwt.token
                   user:
                     type: object
                     properties:
@@ -118,7 +116,7 @@ paths:
                         example: John Doe
                       email:
                         type: string
-                        example: admin@isign.lk
+                        example: admin@example.com
                       role_id:
                         type: integer
                         example: 1
@@ -303,7 +301,7 @@ paths:
                     example: true
                   device_token:
                     type: string
-                    example: eyJhbGciOiJIUzI1NiIsInR5cCI...
+                    example: example.jwt.token
                   location_id:
                     type: integer
                     example: 1
@@ -385,7 +383,7 @@ paths:
                 password:
                   type: string
                   format: password
-                  example: P@ssw0rd123
+                  example: ExamplePassword123!
                 role_id:
                   type: integer
                   example: 1
@@ -3824,7 +3822,7 @@ components:
           example: John Doe
         email:
           type: string
-          example: admin@isign.lk
+          example: admin@example.com
         role_id:
           type: integer
           example: 1
