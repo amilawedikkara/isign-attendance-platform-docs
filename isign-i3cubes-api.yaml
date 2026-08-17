@@ -3786,6 +3786,274 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+
+  /api/v1/reports/attendance-summary:
+    get:
+      tags:
+      - Reports
+      summary: Get Attendance Summary
+      description: Planned management KPI summary for a selected date range.
+      security:
+      - bearerAuth: []
+      parameters:
+      - in: query
+        name: start_date
+        required: true
+        schema:
+          type: string
+          format: date
+      - in: query
+        name: end_date
+        required: true
+        schema:
+          type: string
+          format: date
+      - in: query
+        name: location_id
+        required: false
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/AcceptLanguageHeader'
+      responses:
+        '200':
+          description: Attendance summary fetched successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  summary:
+                    type: object
+                    properties:
+                      total_records:
+                        type: integer
+                        example: 1250
+                      present:
+                        type: integer
+                        example: 1180
+                      absent:
+                        type: integer
+                        example: 35
+                      late:
+                        type: integer
+                        example: 42
+                      attendance_rate:
+                        type: number
+                        format: float
+                        example: 94.6
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenResponse'
+
+  /api/v1/reports/attendance-trends:
+    get:
+      tags:
+      - Reports
+      summary: Get Attendance Trends
+      description: Planned daily attendance trend data for charts and management analysis.
+      security:
+      - bearerAuth: []
+      parameters:
+      - in: query
+        name: start_date
+        required: true
+        schema:
+          type: string
+          format: date
+      - in: query
+        name: end_date
+        required: true
+        schema:
+          type: string
+          format: date
+      - in: query
+        name: location_id
+        required: false
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/AcceptLanguageHeader'
+      responses:
+        '200':
+          description: Attendance trend data fetched successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  trends:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        date:
+                          type: string
+                          format: date
+                        present:
+                          type: integer
+                        absent:
+                          type: integer
+                        late:
+                          type: integer
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenResponse'
+
+  /api/v1/reports/late-absenteeism:
+    get:
+      tags:
+      - Reports
+      summary: Get Late Arrival and Absenteeism Report
+      description: Planned late-arrival and absence statistics by employee and service location.
+      security:
+      - bearerAuth: []
+      parameters:
+      - in: query
+        name: start_date
+        required: true
+        schema:
+          type: string
+          format: date
+      - in: query
+        name: end_date
+        required: true
+        schema:
+          type: string
+          format: date
+      - in: query
+        name: location_id
+        required: false
+        schema:
+          type: integer
+      - in: query
+        name: employee_id
+        required: false
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/AcceptLanguageHeader'
+      responses:
+        '200':
+          description: Late arrival and absenteeism report fetched successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  records:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        employee_id:
+                          type: integer
+                        employee_name:
+                          type: string
+                        location_id:
+                          type: integer
+                        late_count:
+                          type: integer
+                        absence_count:
+                          type: integer
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenResponse'
+
+  /api/v1/reports/regional-performance:
+    get:
+      tags:
+      - Reports
+      summary: Get Regional Attendance Performance
+      description: Planned comparison of attendance performance across regions.
+      security:
+      - bearerAuth: []
+      parameters:
+      - in: query
+        name: start_date
+        required: true
+        schema:
+          type: string
+          format: date
+      - in: query
+        name: end_date
+        required: true
+        schema:
+          type: string
+          format: date
+      - $ref: '#/components/parameters/AcceptLanguageHeader'
+      responses:
+        '200':
+          description: Regional performance report fetched successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  regions:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        region_id:
+                          type: integer
+                        region_name:
+                          type: string
+                        attendance_rate:
+                          type: number
+                          format: float
+                        late_count:
+                          type: integer
+                        absence_count:
+                          type: integer
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForbiddenResponse'
 components:
   securitySchemes:
     bearerAuth:

@@ -8,8 +8,8 @@ This repository documents an actively developed integration project.
 
 The current OpenAPI 3.0.3 specification defines:
 
-* 40 API paths
-* 54 HTTP operations
+* 44 API paths
+* 58 HTTP operations
 * 14 functional API categories
 * JWT bearer authentication
 * device registration and activation
@@ -108,9 +108,9 @@ Key verified specification details:
 | -------------------- | -----------------------------------------: |
 | OpenAPI version      |                                      3.0.3 |
 | API document version |                                      1.0.0 |
-| API paths            |                                         40 |
-| HTTP operations      |                                         54 |
-| GET operations       |                                         16 |
+| API paths            |                                         44 |
+| HTTP operations      |                                         58 |
+| GET operations       |                                         20 |
 | POST operations      |                                         24 |
 | PUT operations       |                                          7 |
 | DELETE operations    |                                          7 |
